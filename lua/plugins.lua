@@ -7,7 +7,10 @@ return require("packer").startup(function(use)
         "nvim-tree/nvim-tree.lua",
         requires = {
           "nvim-tree/nvim-web-devicons"
-        }
+        },
+        config = function()
+            require("nvim-tree").setup {}
+        end
     }
 
     -- AutoSave
@@ -18,11 +21,20 @@ return require("packer").startup(function(use)
         end
     }
 
+    -- Pure black color scheme
+    use {
+        "yunlingz/equinusocio-material.vim",
+	config = function()
+            vim.cmd("let g:equinusocio_material_style = 'pure'")
+	    vim.cmd("colorscheme equinusocio_material")
+    	end
+    }
+
     -- Compile plugins when plugins.lua is saved
     vim.cmd([[
         augroup packer_user_config
 	    autocmd!
-	    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+	    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 	augroup end
     ]])
 end)
