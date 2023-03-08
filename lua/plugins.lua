@@ -10,6 +10,9 @@ return require("packer").startup(function(use)
         },
         config = function()
             require("nvim-tree").setup {}
+            vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = function()
+                require("nvim-tree.api").tree.open()
+            end })
         end
     }
 
@@ -24,9 +27,9 @@ return require("packer").startup(function(use)
     -- Pure black color scheme
     use {
         "yunlingz/equinusocio-material.vim",
-	config = function()
+	    config = function()
             vim.cmd("let g:equinusocio_material_style = 'pure'")
-	    vim.cmd("colorscheme equinusocio_material")
+	        vim.cmd("colorscheme equinusocio_material")
     	end
     }
 
