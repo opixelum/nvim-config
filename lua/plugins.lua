@@ -24,13 +24,14 @@ return require("packer").startup(function(use)
         end
     }
 
-    -- Pure black color scheme
+    -- GitHub Theme
     use {
-        "yunlingz/equinusocio-material.vim",
-	    config = function()
-            vim.cmd("let g:equinusocio_material_style = 'pure'")
-	        vim.cmd("colorscheme equinusocio_material")
-    	end
+        "projekt0n/github-nvim-theme",
+        config = function()
+            require("github-theme").setup {
+                theme_style = "dark_default"
+            }
+        end
     }
 
     -- Compile plugins when plugins.lua is saved
